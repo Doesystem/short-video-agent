@@ -51,8 +51,16 @@
             "name": "auto_post",
             "type": "boolean",
             "label": "โพสต์อัตโนมัติ",
-            "description": "โพสต์วิดีโอขึ้น TikTok อัตโนมัติหลังสร้างเสร็จ",
+            "description": "โพสต์วิดีโอขึ้น platform อัตโนมัติหลังสร้างเสร็จ",
             "default": false,
+            "required": false
+        },
+        {
+            "name": "platforms",
+            "type": "string",
+            "label": "Platforms",
+            "description": "platform ที่ต้องการโพสต์ คั่นด้วย comma: tiktok, youtube_shorts, facebook_reels",
+            "default": "tiktok",
             "required": false
         },
         {
@@ -60,6 +68,20 @@
             "type": "password",
             "label": "TikTok Access Token",
             "description": "Access token สำหรับ TikTok Content Posting API",
+            "required": false
+        },
+        {
+            "name": "youtube_access_token",
+            "type": "password",
+            "label": "YouTube Access Token",
+            "description": "Access token สำหรับ YouTube Data API v3",
+            "required": false
+        },
+        {
+            "name": "facebook_access_token",
+            "type": "password",
+            "label": "Facebook Access Token",
+            "description": "Access token สำหรับ Facebook Graph API",
             "required": false
         }
     ],
