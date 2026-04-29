@@ -23,7 +23,46 @@
             ]
         }
     },
-    "env": [],
+    "env": [
+        {
+            "name": "topic",
+            "type": "string",
+            "label": "หัวข้อวิดีโอ",
+            "description": "หัวข้อที่ต้องการสร้างวิดีโอ TikTok",
+            "required": true
+        },
+        {
+            "name": "tone",
+            "type": "string",
+            "label": "โทนของวิดีโอ",
+            "description": "โทนของบทพูด: สนุก, ให้ความรู้, ดราม่า",
+            "default": "ให้ความรู้",
+            "required": false
+        },
+        {
+            "name": "video_style",
+            "type": "string",
+            "label": "สไตล์วิดีโอ",
+            "description": "สไตล์วิดีโอ: talking-head, b-roll, meme",
+            "default": "talking-head",
+            "required": false
+        },
+        {
+            "name": "auto_post",
+            "type": "boolean",
+            "label": "โพสต์อัตโนมัติ",
+            "description": "โพสต์วิดีโอขึ้น TikTok อัตโนมัติหลังสร้างเสร็จ",
+            "default": false,
+            "required": false
+        },
+        {
+            "name": "tiktok_access_token",
+            "type": "password",
+            "label": "TikTok Access Token",
+            "description": "Access token สำหรับ TikTok Content Posting API",
+            "required": false
+        }
+    ],
     "keywords": [
         "short-video",
         "video",

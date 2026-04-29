@@ -1,15 +1,19 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "Node16",
-    "moduleResolution": "Node16",
+    "module": "CommonJS",
+    "moduleResolution": "node",
     "lib": ["ES2020", "DOM"],
     "strict": true,
     "outDir": "dist",
     "rootDir": "src",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@lifetimesoft/agent-sdk": ["./node_modules/@lifetimesoft/agent-sdk/dist/index.d.ts"],
+      "@lifetimesoft/agent-sdk/testing": ["./node_modules/@lifetimesoft/agent-sdk/dist/testing.d.ts"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "src/**/*.test.ts"]
