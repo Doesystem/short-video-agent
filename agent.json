@@ -1,0 +1,32 @@
+{
+    "name": "doesystem/short-video-agent",
+    "version": "0.0.1",
+    "description": "A short video agent built with @lifetimesoft/agent-sdk",
+    "runtime": "node20",
+    "main": "dist/index.js",
+    "public": true,
+    "version_public": true,
+    "pull_public": true,
+    "input": {
+        "type": "none"
+    },
+    "output": {
+        "type": "none"
+    },
+    "capabilities": {
+        "ai": {
+            "required": true,
+            "features": [
+                "chat",
+                "image",
+                "video"
+            ]
+        }
+    },
+    "env": [],
+    "keywords": [
+        "short-video",
+        "video",
+        "agent"
+    ]
+}
