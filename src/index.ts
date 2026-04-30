@@ -1,8 +1,10 @@
 import { defineAgent, getEnvString, getEnvBoolean } from "@lifetimesoft/agent-sdk"
 import { runAgentLoop } from "./agent-loop"
 import { generateCaption } from "./tools/generateCaption"
+import { generateTopic } from "./tools/generateTopic"
 import { postToPlatform } from "./tools/postToPlatform"
-import type { Platform } from "./tools/generateScript"
+import type { Platform, Tone } from "./tools/generateScript"
+import type { VideoStyle } from "./tools/generateVideo"
 
 const ALL_PLATFORMS: Platform[] = ["tiktok", "youtube_shorts", "facebook_reels"]
 
@@ -10,14 +12,18 @@ export default defineAgent({
     async run(ctx) {
         ctx.log.info("Short Video Agent starting...")
 
-        const topic = getEnvString(ctx.env, "topic")
-        if (!topic) {
-            ctx.log.error("Missing env: topic")
-            throw new Error("Missing required env: topic")
-        }
+        const tone = (getEnvString(ctx.env, "tone") ?? "ให้ความรู้") as Tone
+        const style = (getEnvString(ctx.env, "video_style") ?? "talking-head") as VideoStyle
 
-        const tone = getEnvString(ctx.env, "tone") ?? "ให้ความรู้"
-        const style = getEnvString(ctx.env, "video_style") ?? "talking-head"
+        // ── ถ้าไม่มี topic ให้ AI คิดหัวข้อให้เลย ─────────────────────────────
+        let topic = getEnvString(ctx.env, "topic")
+        if (!topic) {
+            ctx.log.info("No topic provided — asking AI to generate one...")
+            const category = getEnvString(ctx.env, "category") ?? undefined
+            const generated = await generateTopic({ tone, style, category }, ctx)
+            topic = generated.topic
+            ctx.log.info(`AI generated topic: "${topic}" (reason: ${generated.reason})`)
+        }
         const autoPost = getEnvBoolean(ctx.env, "auto_post", false)
 
         // Parse target platforms from env — comma-separated, e.g. "tiktok,youtube_shorts"
